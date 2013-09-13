@@ -1,0 +1,85 @@
+<?php
+/**
+ * @file
+ * Code for the Catman commerece feature.
+ */
+
+include_once 'catman_commerce.features.inc';
+
+
+/**
+ * Implements hook_commerce_order_state_info().
+ *
+ * We add a new "under_construction" state.
+ */
+// function catman_commerce_commerce_order_state_info() {
+//   $order_states['under_construction'] = array(
+//     'name' => 'under_construction',
+//     'title' => t('Under Construction'),
+//     'description' => t('Orders in this state have been sent to the manufacturer to be constructed.'),
+//     'weight' => 20,
+//     'default_status' => 'scheduled',
+
+//     // If 'cart' is TRUE then various capabilities of the commerce_cart module
+//     // are enabled. This includes price recalculation on page reload. Since
+//     // 'under_construction' is well past the stage that orders should be
+//     // recalculated, we'll use cart == FALSE here.
+//     'cart' => FALSE,
+
+//     // A status may be disabled (unavailable for use). The default is TRUE,
+//     // making it available.
+//     'status' => TRUE,
+//   );
+//   return $order_states;
+// }
+
+/**
+ * Implements hook_commerce_order_state_info_alter().
+ *
+ * Here we want to make sure that our 'under_construction' order state comes
+ * right before 'completed', so adjust the weight of each.
+ *
+ * @param $order_states
+ */
+// function catman_commerce_commerce_order_state_info_alter(&$order_states) {
+//   if (!empty($order_states['completed']) && $order_states['completed']['weight'] < $order_states['under_construction']['weight']) {
+//     $order_states['completed']['weight'] += 10;
+//     $order_states['under_construction']['weight'] = $order_states['completed']['weight'] - 1;
+//   }
+// }
+
+/**
+ * Implements hook_commerce_order_status_info().
+ *
+ * Here we add two statuses to the pending' order state.
+ */
+function catman_commerce_commerce_order_status_info() {
+  $order_statuses['shipped_paid'] = array(
+    'name' => 'shipped_paid',
+    'title' => t('Shipped and paid'),
+    'state' => 'pending',
+    'weight' => '9',
+  );
+
+  $order_statuses['shipped_unpaid'] = array(
+    'name' => 'shipped_unpaid',
+    'title' => t('Shipped and unpaid'),
+    'state' => 'pending',
+    'weight' => '10',
+  );
+
+  // remove processing status
+  $order_statuses['processing'] = array(
+    'state' => 'pending',
+    'status' => FALSE,
+  );
+
+
+  // $order_statuses['shipped_from_vendor'] = array(
+  //   'name' => 'shipped_from_vendor',
+  //   'title' => t('Shipped from vendor'),
+  //   'state' => 'pending',
+  // );
+
+  return $order_statuses;
+}
