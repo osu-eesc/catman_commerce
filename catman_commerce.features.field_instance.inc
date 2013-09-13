@@ -779,7 +779,7 @@ function catman_commerce_field_default_field_instances() {
       ),
     ),
     'deleted' => 0,
-    'description' => 'Enter the inventory for this item.<br>
+    'description' => 'Enter the inventory for this item.
 <em>Note: If you are adjusting the inventory (because of a purchase, reprint, reduction, etc.), note the reason for the adjustment in the "Revision information" section before clicking "Save."</em>',
     'display' => array(
       'add_to_cart_confirmation_view' => array(
@@ -1660,7 +1660,7 @@ function catman_commerce_field_default_field_instances() {
   t('Cost per copy');
   t('Display name');
   t('Display path');
-  t('Enter the inventory for this item.<br>
+  t('Enter the inventory for this item.
 <em>Note: If you are adjusting the inventory (because of a purchase, reprint, reduction, etc.), note the reason for the adjustment in the "Revision information" section before clicking "Save."</em>');
   t('Line item');
   t('Line items');
