@@ -13,7 +13,6 @@ dependencies[] = commerce_backoffice_content
 dependencies[] = commerce_backoffice_order
 dependencies[] = commerce_backoffice_product
 dependencies[] = commerce_cart
-dependencies[] = commerce_catman_invoice
 dependencies[] = commerce_checkout
 dependencies[] = commerce_checkout_progress
 dependencies[] = commerce_customer
