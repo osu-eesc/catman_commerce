@@ -36,10 +36,10 @@ function catman_commerce_commerce_order_status_info() {
   );
 
   // remove processing status
-  $order_statuses['processing'] = array(
-    'state' => 'pending',
-    'status' => FALSE,
-  );
+  // $order_statuses['processing'] = array(
+  //   'state' => 'pending',
+  //   'status' => FALSE,
+  // );
 
   return $order_statuses;
 }

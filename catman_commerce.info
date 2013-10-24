@@ -36,7 +36,6 @@ dependencies[] = commerce_ui
 dependencies[] = commerce_vbo_views
 dependencies[] = context
 dependencies[] = context_ui
-dependencies[] = emogrifier
 dependencies[] = eva
 dependencies[] = osu_publication
 dependencies[] = strongarm
