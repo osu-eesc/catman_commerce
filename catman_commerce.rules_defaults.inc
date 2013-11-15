@@ -571,44 +571,6 @@ function catman_commerce_default_rules_configuration() {
       ]
     }
   }');
-  $items['rules_osu_index'] = entity_import('rules_config', '{ "rules_osu_index" : {
-      "LABEL" : "OSU index",
-      "PLUGIN" : "reaction rule",
-      "WEIGHT" : "-1",
-      "ACTIVE" : false,
-      "TAGS" : [ "Commerce Payment" ],
-      "REQUIRES" : [ "rules", "commerce_payment" ],
-      "ON" : [ "commerce_payment_methods" ],
-      "IF" : [
-        { "user_has_role" : {
-            "account" : [ "site:current-user" ],
-            "roles" : { "value" : { "6" : "6" } },
-            "operation" : "OR"
-          }
-        },
-        { "NOT user_has_role" : {
-            "account" : [ "site:current-user" ],
-            "roles" : { "value" : { "5" : "5", "9" : "9", "8" : "8" } },
-            "operation" : "OR"
-          }
-        }
-      ],
-      "DO" : [
-        { "commerce_payment_enable_commerce_purchase_order" : {
-            "commerce_order" : [ "commerce-order" ],
-            "payment_method" : { "value" : {
-                "method_id" : "commerce_purchase_order",
-                "settings" : {
-                  "commerce_purchase_order_length" : "0",
-                  "commerce_purchase_order_instructions" : "Please enter your OSU index and activity code. "
-                }
-              }
-            }
-          }
-        }
-      ]
-    }
-  }');
   $items['rules_purchase_order_access'] = entity_import('rules_config', '{ "rules_purchase_order_access" : {
       "LABEL" : "Purchase order access",
       "PLUGIN" : "rule",
@@ -693,25 +655,11 @@ function catman_commerce_default_rules_configuration() {
       ]
     }
   }');
-  $items['rules_send_invoice'] = entity_import('rules_config', '{ "rules_send_invoice" : {
-      "LABEL" : "Send invoice after completed order",
-      "PLUGIN" : "reaction rule",
-      "TAGS" : [ "Commerce Payment" ],
-      "REQUIRES" : [ "rules", "commerce_catman_invoice", "commerce_checkout" ],
-      "ON" : [ "commerce_checkout_complete" ],
-      "DO" : [
-        { "commerce_catman_invoice_action_mail" : {
-            "commerce_order" : [ "commerce_order" ],
-            "to" : "[commerce-order:owner] \\u003C[commerce-order:mail]\\u003E",
-            "subject" : "[site:name]: Order #date([site:current-date], \\u0027Y-m-d\\u0027)-[commerce-order:order-id]"
-          }
-        }
-      ]
-    }
-  }');
   $items['rules_send_order_confirmation_email_eesc'] = entity_import('rules_config', '{ "rules_send_order_confirmation_email_eesc" : {
-      "LABEL" : "Send order confirmation email to EESC",
+      "LABEL" : "Send order received email to EESC",
       "PLUGIN" : "reaction rule",
+      "WEIGHT" : "4",
+      "ACTIVE" : false,
       "TAGS" : [ "catman" ],
       "REQUIRES" : [ "rules", "commerce_checkout" ],
       "ON" : [ "commerce_checkout_complete" ],
@@ -747,7 +695,7 @@ function catman_commerce_default_rules_configuration() {
         { "mail" : {
             "to" : "[commerce-order:mail]",
             "subject" : "Your [site:name] order is ready for pickup (order [commerce-order:order-number])",
-            "message" : "Thanks again for your [site:name] order. Your order is ready for pickup.\\r\\n\\r\\nYou can pick up your order at LOCATION HOURS, ETC. What should we put here?\\r\\n\\r\\nIf you paid with a credit card, order will be complete....something, something.\\r\\n\\r\\nIf you are paying with a purchase order, payment is due upon receipt. Please forward the invoice (included with your order) to your accounts payable department, and note the payment instructions on the invoice.\\r\\n\\r\\nIf you are paying with an OSU index, we will process a journal voucher to complete your order.\\r\\n\\r\\nRemember that you can view the status of your order and your order history with us at any time by logging into your [site:name] account at:\\r\\n[site:login-url]\\r\\n\\r\\nPlease contact us if you have questions. Thank you!\\r\\n\\r\\nExtension and Experiment Station Communications\\r\\nOregon State University\\r\\n422 Kerr Administration Bldg.\\r\\nCorvallis, OR 97331-2119\\r\\nPhone: 541-737-2513 or 800-561-6719\\r\\nEmail: puborders@oregonstate.edu\\r\\nextension.oregonstate.edu\\/catalog",
+            "message" : "Thanks again for your [site:name] order. Your order is ready for pickup.\\r\\n\\r\\nYou can pick up your order weekdays between 8:00 a.m. and 5:00 p.m. Pacific Time at our office:\\r\\nExtension and Experiment Station Communications\\r\\nOregon State University\\r\\n422 Kerr Administration Bldg.\\r\\nCorvallis, OR 97331-2119\\r\\n\\r\\nIf you are paying with an OSU index, we will process a journal voucher to complete your order.\\r\\n\\r\\nIf you are paying with a purchase order, payment is due upon receipt of your order. Please forward the invoice (included with your order) to your accounts payable department, and note the payment instructions on the invoice.\\r\\n\\r\\nRemember that you can view the status of your order and your order history with us at any time by logging into your [site:name] account at:\\r\\n[site:login-url]\\r\\n\\r\\nPlease contact us if you have questions. Thank you!\\r\\n\\r\\nExtension and Experiment Station Communications\\r\\nOregon State University\\r\\n422 Kerr Administration Bldg.\\r\\nCorvallis, OR 97331-2119\\r\\nPhone: 541-737-2513 or 800-561-6719\\r\\nEmail: puborders@oregonstate.edu\\r\\nextension.oregonstate.edu\\/catalog",
             "language" : [ "" ]
           }
         }
@@ -775,7 +723,7 @@ function catman_commerce_default_rules_configuration() {
         { "mail" : {
             "to" : "[commerce-order:mail]",
             "subject" : "Your [site:name] order has shipped (order [commerce-order:order-number])",
-            "message" : "Thanks again for your [site:name] order. Your order has been shipped. Because you\\u0027ve already paid with a credit card, this completes your order.\\r\\n\\r\\nRemember that you can view the status of your order and your order history with us at any time by logging into your [site:name] account at:\\r\\n[site:login-url]\\r\\n\\r\\nPlease contact us if you have questions. Thank you!\\r\\n\\r\\nExtension and Experiment Station Communications\\r\\nOregon State University\\r\\n422 Kerr Administration Bldg.\\r\\nCorvallis, OR 97331-2119\\r\\nPhone: 541-737-2513 or 800-561-6719\\r\\nEmail: puborders@oregonstate.edu\\r\\nextension.oregonstate.edu\\/catalog",
+            "message" : "Thanks again for your [site:name] order. Your order has been shipped and is fully paid. This completes your order.\\r\\n\\r\\nRemember that you can view the status of your order and your order history with us at any time by logging into your [site:name] account at: [site:login-url]\\r\\n\\r\\nPlease contact us if you have questions. Thank you!\\r\\n\\r\\nExtension and Experiment Station Communications\\r\\nOregon State University\\r\\n422 Kerr Administration Bldg.\\r\\nCorvallis, OR 97331-2119\\r\\nPhone: 541-737-2513 or 800-561-6719\\r\\nEmail: puborders@oregonstate.edu\\r\\nextension.oregonstate.edu\\/catalog",
             "language" : [ "" ]
           }
         }
@@ -803,7 +751,7 @@ function catman_commerce_default_rules_configuration() {
         { "mail" : {
             "to" : "[commerce-order:mail]",
             "subject" : "Your [site:name] order has shipped (order [commerce-order:order-number])",
-            "message" : "Thanks again for your [site:name] order. Your order has been shipped.\\r\\n\\r\\nIf you are paying with a purchase order, payment is due upon receipt. Please forward the invoice (included with your order) to your accounts payable department, and note the payment instructions on the invoice.\\r\\n\\r\\nIf you are paying with an OSU index, we will process a journal voucher to complete your order.\\r\\n\\r\\nRemember that you can view the status of your order and your order history with us at any time by logging into your [site:name] account at:\\r\\n[site:login-url]\\r\\n\\r\\nPlease contact us if you have questions. Thank you!\\r\\n\\r\\nExtension and Experiment Station Communications\\r\\nOregon State University\\r\\n422 Kerr Administration Bldg.\\r\\nCorvallis, OR 97331-2119\\r\\nPhone: 541-737-2513 or 800-561-6719\\r\\nEmail: puborders@oregonstate.edu\\r\\nextension.oregonstate.edu\\/catalog",
+            "message" : "Thanks again for your [site:name] order. Your order has been shipped.\\r\\n\\r\\nIf you are paying with an OSU index, we will process a journal voucher to complete your payment.\\r\\n\\r\\nIf you are paying with a purchase order, payment is due upon receipt of your order. Please forward the invoice (included with your order) to your accounts payable department, and note the payment instructions on the invoice.\\r\\n\\r\\nRemember that you can view the status of your order and your order history with us at any time by logging into your [site:name] account at: [site:login-url]\\r\\n\\r\\nPlease contact us if you have questions. Thank you!\\r\\n\\r\\nExtension and Experiment Station Communications\\r\\nOregon State University\\r\\n422 Kerr Administration Bldg.\\r\\nCorvallis, OR 97331-2119\\r\\nPhone: 541-737-2513 or 800-561-6719\\r\\nEmail: puborders@oregonstate.edu\\r\\nextension.oregonstate.edu\\/catalog",
             "language" : [ "" ]
           }
         }
