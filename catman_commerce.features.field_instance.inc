@@ -448,13 +448,15 @@ function catman_commerce_field_default_field_instances() {
       ),
     ),
     'entity_type' => 'commerce_order',
+    'fences_wrapper' => 'div',
     'field_name' => 'commerce_customer_billing',
-    'label' => 'Billing information',
-    'required' => FALSE,
+    'label' => 'Bill to',
+    'required' => 0,
     'settings' => array(
       'user_register_form' => FALSE,
     ),
     'widget' => array(
+      'active' => 0,
       'module' => 'commerce_customer',
       'settings' => array(),
       'type' => 'commerce_customer_profile_manager',
@@ -498,13 +500,15 @@ function catman_commerce_field_default_field_instances() {
       ),
     ),
     'entity_type' => 'commerce_order',
+    'fences_wrapper' => 'div',
     'field_name' => 'commerce_customer_shipping',
-    'label' => 'Shipping information',
-    'required' => FALSE,
+    'label' => 'Ship to',
+    'required' => 0,
     'settings' => array(
       'user_register_form' => FALSE,
     ),
     'widget' => array(
+      'active' => 0,
       'module' => 'commerce_customer',
       'settings' => array(),
       'type' => 'commerce_customer_profile_manager',
@@ -1656,7 +1660,7 @@ function catman_commerce_field_default_field_instances() {
 
   // Translatables
   // Included for use with string extractors like potx.
-  t('Billing information');
+  t('Bill to');
   t('Cost per copy');
   t('Display name');
   t('Display path');
@@ -1671,7 +1675,7 @@ function catman_commerce_field_default_field_instances() {
   t('Price');
   t('Product');
   t('Quanity available');
-  t('Shipping information');
+  t('Ship to');
   t('Shipping service');
   t('The name of this message type as displayed in logs.');
   t('This is the text of all messages of this type.');

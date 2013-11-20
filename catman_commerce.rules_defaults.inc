@@ -550,7 +550,7 @@ function catman_commerce_default_rules_configuration() {
   $items['rules_osu_affiliate_discount_25_off'] = entity_import('rules_config', '{ "rules_osu_affiliate_discount_25_off" : {
       "LABEL" : "OSU affiliate discount 25% off",
       "PLUGIN" : "reaction rule",
-      "TAGS" : [ "Commerce Checkout" ],
+      "TAGS" : [ "catman", "Commerce Checkout" ],
       "REQUIRES" : [ "rules", "commerce_line_item", "commerce_product_reference" ],
       "ON" : [ "commerce_product_calculate_sell_price" ],
       "IF" : [
@@ -603,7 +603,7 @@ function catman_commerce_default_rules_configuration() {
   $items['rules_quanity_discount_100'] = entity_import('rules_config', '{ "rules_quanity_discount_100" : {
       "LABEL" : "Quantity discount 25%",
       "PLUGIN" : "reaction rule",
-      "TAGS" : [ "Commerce Payment" ],
+      "TAGS" : [ "catman", "Commerce Payment" ],
       "REQUIRES" : [ "rules", "commerce_line_item", "commerce_product_reference" ],
       "ON" : [ "commerce_product_calculate_sell_price" ],
       "IF" : [
@@ -634,7 +634,7 @@ function catman_commerce_default_rules_configuration() {
   $items['rules_reseller_discount_25_off'] = entity_import('rules_config', '{ "rules_reseller_discount_25_off" : {
       "LABEL" : "Reseller discount 25% off",
       "PLUGIN" : "reaction rule",
-      "TAGS" : [ "Commerce Checkout" ],
+      "TAGS" : [ "catman", "Commerce Checkout" ],
       "REQUIRES" : [ "rules", "commerce_line_item", "commerce_product_reference" ],
       "ON" : [ "commerce_product_calculate_sell_price" ],
       "IF" : [
