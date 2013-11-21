@@ -655,25 +655,6 @@ function catman_commerce_default_rules_configuration() {
       ]
     }
   }');
-  $items['rules_send_order_confirmation_email_eesc'] = entity_import('rules_config', '{ "rules_send_order_confirmation_email_eesc" : {
-      "LABEL" : "Send order received email to EESC",
-      "PLUGIN" : "reaction rule",
-      "WEIGHT" : "4",
-      "ACTIVE" : false,
-      "TAGS" : [ "catman" ],
-      "REQUIRES" : [ "rules", "commerce_checkout" ],
-      "ON" : [ "commerce_checkout_complete" ],
-      "DO" : [
-        { "mail" : {
-            "to" : "bryan.mayjor@oregonstate.edu, jennifer.alexander@oregonstate.edu",
-            "subject" : "OSU Extension Catalog order received (order [commerce-order:order-number])",
-            "message" : "A new [site:name] order has been received. Log into CatMan to review and process this order.\\r\\n\\r\\nOrder number: [commerce-order:order-number]\\r\\n[commerce-order:admin-url]\\r\\n\\r\\n\\r\\n",
-            "language" : [ "" ]
-          }
-        }
-      ]
-    }
-  }');
   $items['rules_send_ready_for_pickup_email'] = entity_import('rules_config', '{ "rules_send_ready_for_pickup_email" : {
       "LABEL" : "Send ready for pickup email",
       "PLUGIN" : "reaction rule",
