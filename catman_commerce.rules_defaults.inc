@@ -500,29 +500,6 @@ function catman_commerce_default_rules_configuration() {
       ]
     }
   }');
-  $items['rules_discount_25_off_message'] = entity_import('rules_config', '{ "rules_discount_25_off_message" : {
-      "LABEL" : "Discount 25% off message",
-      "PLUGIN" : "reaction rule",
-      "ACTIVE" : false,
-      "REQUIRES" : [ "rules", "commerce_cart" ],
-      "ON" : [ "commerce_cart_product_add" ],
-      "IF" : [
-        { "user_has_role" : {
-            "account" : [ "site:current-user" ],
-            "roles" : { "value" : { "6" : "6", "5" : "5" } },
-            "operation" : "OR"
-          }
-        }
-      ],
-      "DO" : [
-        { "drupal_message" : {
-            "message" : "Your 25% discount was applied to [commerce_product:title].",
-            "repeat" : 0
-          }
-        }
-      ]
-    }
-  }');
   $items['rules_increment_stock_canceling_order'] = entity_import('rules_config', '{ "rules_increment_stock_canceling_order" : {
       "LABEL" : "Stock: Increase when canceling the order process",
       "PLUGIN" : "reaction rule",
