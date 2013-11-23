@@ -35,11 +35,11 @@ function catman_commerce_commerce_order_status_info() {
     'weight' => '12',
   );
 
-  // remove processing status
-  $order_statuses['processing'] = array(
-    'state' => 'pending',
-    'status' => FALSE,
-  );
+  // remove processing status (we may want to add this back at some point)
+  // $order_statuses['processing'] = array(
+  //   'state' => 'pending',
+  //   'status' => FALSE,
+  // );
 
   return $order_statuses;
 }
