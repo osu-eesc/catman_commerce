@@ -9,9 +9,50 @@
  */
 function catman_commerce_default_rules_configuration() {
   $items = array();
+  $items['rules_10_percent_over_100'] = entity_import('rules_config', '{ "rules_10_percent_over_100" : {
+      "LABEL" : "10 percent on orders over 100 dollars",
+      "PLUGIN" : "reaction rule",
+      "OWNER" : "rules",
+      "TAGS" : [ "catman" ],
+      "REQUIRES" : [ "commerce_price", "rules", "commerce_line_item", "commerce_shipping" ],
+      "ON" : { "commerce_shipping_calculate_rate" : [] },
+      "IF" : [
+        { "commerce_price_compare_price" : {
+            "first_price" : [ "commerce-line-item:order:commerce-order-total" ],
+            "operator" : "\\u003E",
+            "second_price" : { "value" : { "amount" : 10000, "currency_code" : "USD" } }
+          }
+        },
+        { "text_matches" : {
+            "text" : [ "commerce-line-item:line-item-label" ],
+            "match" : "10% of order total"
+          }
+        }
+      ],
+      "DO" : [
+        { "data_calc" : {
+            "USING" : {
+              "input_1" : [ "commerce-line-item:order:commerce-order-total:amount" ],
+              "op" : "*",
+              "input_2" : "0.1"
+            },
+            "PROVIDE" : { "result" : { "result" : "Calculation result" } }
+          }
+        },
+        { "commerce_line_item_unit_price_add" : {
+            "commerce_line_item" : [ "commerce_line_item" ],
+            "amount" : [ "result" ],
+            "component_name" : "flat_rate_10_of_total_over_100",
+            "round_mode" : "2"
+          }
+        }
+      ]
+    }
+  }');
   $items['rules_delete_shipping_line_item_then_apply_shipping_actual'] = entity_import('rules_config', '{ "rules_delete_shipping_line_item_then_apply_shipping_actual" : {
       "LABEL" : "Delete shipping line item then apply shipping (actual)",
       "PLUGIN" : "rule set",
+      "OWNER" : "rules",
       "TAGS" : [ "catman" ],
       "REQUIRES" : [ "commerce_shipping", "rules" ],
       "USES VARIABLES" : { "commerce_order" : { "label" : "Commerce Order", "type" : "commerce_order" } },
@@ -47,6 +88,7 @@ function catman_commerce_default_rules_configuration() {
   $items['rules_delete_shipping_line_item_then_apply_shipping_eght_to_hun'] = entity_import('rules_config', '{ "rules_delete_shipping_line_item_then_apply_shipping_eght_to_hun" : {
       "LABEL" : "Delete shipping line item then apply shipping ($80.01 to $100)",
       "PLUGIN" : "rule set",
+      "OWNER" : "rules",
       "TAGS" : [ "catman" ],
       "REQUIRES" : [ "commerce_shipping", "rules" ],
       "USES VARIABLES" : { "commerce_order" : { "label" : "Commerce Order", "type" : "commerce_order" } },
@@ -98,6 +140,7 @@ function catman_commerce_default_rules_configuration() {
   $items['rules_delete_shipping_line_item_then_apply_shipping_five_or_less'] = entity_import('rules_config', '{ "rules_delete_shipping_line_item_then_apply_shipping_five_or_less" : {
       "LABEL" : "Delete shipping line item then apply shipping ($5 or less)",
       "PLUGIN" : "rule set",
+      "OWNER" : "rules",
       "TAGS" : [ "catman" ],
       "REQUIRES" : [ "commerce_shipping", "rules" ],
       "USES VARIABLES" : { "commerce_order" : { "label" : "Commerce Order", "type" : "commerce_order" } },
@@ -143,6 +186,7 @@ function catman_commerce_default_rules_configuration() {
   $items['rules_delete_shipping_line_item_then_apply_shipping_five_to_ten'] = entity_import('rules_config', '{ "rules_delete_shipping_line_item_then_apply_shipping_five_to_ten" : {
       "LABEL" : "Delete shipping line item then apply shipping ($5.01 to $10)",
       "PLUGIN" : "rule set",
+      "OWNER" : "rules",
       "TAGS" : [ "catman" ],
       "REQUIRES" : [ "commerce_shipping", "rules" ],
       "USES VARIABLES" : { "commerce_order" : { "label" : "Commerce Order", "type" : "commerce_order" } },
@@ -194,6 +238,7 @@ function catman_commerce_default_rules_configuration() {
   $items['rules_delete_shipping_line_item_then_apply_shipping_free'] = entity_import('rules_config', '{ "rules_delete_shipping_line_item_then_apply_shipping_free" : {
       "LABEL" : "Delete shipping line item then apply shipping (free)",
       "PLUGIN" : "rule set",
+      "OWNER" : "rules",
       "TAGS" : [ "catman" ],
       "REQUIRES" : [ "commerce_shipping", "rules" ],
       "USES VARIABLES" : { "commerce_order" : { "label" : "Commerce Order", "type" : "commerce_order" } },
@@ -229,6 +274,7 @@ function catman_commerce_default_rules_configuration() {
   $items['rules_delete_shipping_line_item_then_apply_shipping_free_campus'] = entity_import('rules_config', '{ "rules_delete_shipping_line_item_then_apply_shipping_free_campus" : {
       "LABEL" : "Delete shipping line item then apply shipping (free campus mail)",
       "PLUGIN" : "rule set",
+      "OWNER" : "rules",
       "TAGS" : [ "catman" ],
       "REQUIRES" : [ "commerce_shipping", "rules" ],
       "USES VARIABLES" : { "commerce_order" : { "label" : "Commerce Order", "type" : "commerce_order" } },
@@ -264,6 +310,7 @@ function catman_commerce_default_rules_configuration() {
   $items['rules_delete_shipping_line_item_then_apply_shipping_free_shuttle'] = entity_import('rules_config', '{ "rules_delete_shipping_line_item_then_apply_shipping_free_shuttle" : {
       "LABEL" : "Delete shipping line item then apply shipping (free state shuttle)",
       "PLUGIN" : "rule set",
+      "OWNER" : "rules",
       "TAGS" : [ "catman" ],
       "REQUIRES" : [ "commerce_shipping", "rules" ],
       "USES VARIABLES" : { "commerce_order" : { "label" : "Commerce Order", "type" : "commerce_order" } },
@@ -299,6 +346,7 @@ function catman_commerce_default_rules_configuration() {
   $items['rules_delete_shipping_line_item_then_apply_shipping_frty_to_sxty'] = entity_import('rules_config', '{ "rules_delete_shipping_line_item_then_apply_shipping_frty_to_sxty" : {
       "LABEL" : "Delete shipping line item then apply shipping ($40.01 to $60)",
       "PLUGIN" : "rule set",
+      "OWNER" : "rules",
       "TAGS" : [ "catman" ],
       "REQUIRES" : [ "commerce_shipping", "rules" ],
       "USES VARIABLES" : { "commerce_order" : { "label" : "Commerce Order", "type" : "commerce_order" } },
@@ -347,9 +395,56 @@ function catman_commerce_default_rules_configuration() {
       ]
     }
   }');
+  $items['rules_delete_shipping_line_item_then_apply_shipping_over_100_'] = entity_import('rules_config', '{ "rules_delete_shipping_line_item_then_apply_shipping_over_100_" : {
+      "LABEL" : "Delete shipping line item then apply shipping (over $100)",
+      "PLUGIN" : "rule set",
+      "OWNER" : "rules",
+      "TAGS" : [ "catman" ],
+      "REQUIRES" : [ "commerce_shipping", "rules" ],
+      "USES VARIABLES" : { "commerce_order" : { "label" : "Commerce Order", "type" : "commerce_order" } },
+      "RULES" : [
+        { "RULE" : {
+            "DO" : [
+              { "commerce_shipping_delete_shipping_line_items" : { "commerce_order" : [ "commerce_order" ] } }
+            ],
+            "LABEL" : "Delete shipping line item"
+          }
+        },
+        { "RULE" : {
+            "IF" : [
+              { "AND" : [
+                  { "NOT user_has_role" : {
+                      "account" : [ "site:current-user" ],
+                      "roles" : { "value" : { "6" : "6", "9" : "9" } },
+                      "operation" : "OR"
+                    }
+                  },
+                  { "data_is" : {
+                      "data" : [ "commerce-order:commerce-order-total:amount" ],
+                      "op" : "\\u003E",
+                      "value" : "10000"
+                    }
+                  }
+                ]
+              }
+            ],
+            "DO" : [
+              { "commerce_shipping_service_rate_order" : {
+                  "shipping_service_name" : "shipping_10_over_100",
+                  "commerce_order" : [ "commerce_order" ]
+                }
+              }
+            ],
+            "LABEL" : "Add rate for shipping (over $100)"
+          }
+        }
+      ]
+    }
+  }');
   $items['rules_delete_shipping_line_item_then_apply_shipping_sxty_to_eght'] = entity_import('rules_config', '{ "rules_delete_shipping_line_item_then_apply_shipping_sxty_to_eght" : {
       "LABEL" : "Delete shipping line item then apply shipping ($60.01 to $80)",
       "PLUGIN" : "rule set",
+      "OWNER" : "rules",
       "TAGS" : [ "catman" ],
       "REQUIRES" : [ "commerce_shipping", "rules" ],
       "USES VARIABLES" : { "commerce_order" : { "label" : "Commerce Order", "type" : "commerce_order" } },
@@ -401,6 +496,7 @@ function catman_commerce_default_rules_configuration() {
   $items['rules_delete_shipping_line_item_then_apply_shipping_ten_to_twent'] = entity_import('rules_config', '{ "rules_delete_shipping_line_item_then_apply_shipping_ten_to_twent" : {
       "LABEL" : "Delete shipping line item then apply shipping ($10.01 to $20)",
       "PLUGIN" : "rule set",
+      "OWNER" : "rules",
       "TAGS" : [ "catman" ],
       "REQUIRES" : [ "commerce_shipping", "rules" ],
       "USES VARIABLES" : { "commerce_order" : { "label" : "Commerce Order", "type" : "commerce_order" } },
@@ -452,6 +548,7 @@ function catman_commerce_default_rules_configuration() {
   $items['rules_delete_shipping_line_item_then_apply_shipping_twty_to_frty'] = entity_import('rules_config', '{ "rules_delete_shipping_line_item_then_apply_shipping_twty_to_frty" : {
       "LABEL" : "Delete shipping line item then apply shipping ($20.01 to $40)",
       "PLUGIN" : "rule set",
+      "OWNER" : "rules",
       "TAGS" : [ "catman" ],
       "REQUIRES" : [ "commerce_shipping", "rules" ],
       "USES VARIABLES" : { "commerce_order" : { "label" : "Commerce Order", "type" : "commerce_order" } },
@@ -503,8 +600,9 @@ function catman_commerce_default_rules_configuration() {
   $items['rules_increment_stock_canceling_order'] = entity_import('rules_config', '{ "rules_increment_stock_canceling_order" : {
       "LABEL" : "Stock: Increase when canceling the order process",
       "PLUGIN" : "reaction rule",
+      "OWNER" : "rules",
       "REQUIRES" : [ "rules", "commerce_ss", "entity" ],
-      "ON" : [ "commerce_order_update" ],
+      "ON" : { "commerce_order_update" : [] },
       "IF" : [
         { "data_is" : { "data" : [ "commerce-order:status" ], "value" : "canceled" } },
         { "AND" : [
@@ -527,9 +625,10 @@ function catman_commerce_default_rules_configuration() {
   $items['rules_osu_affiliate_discount_25_off'] = entity_import('rules_config', '{ "rules_osu_affiliate_discount_25_off" : {
       "LABEL" : "OSU affiliate discount 25% off",
       "PLUGIN" : "reaction rule",
+      "OWNER" : "rules",
       "TAGS" : [ "catman", "Commerce Checkout" ],
       "REQUIRES" : [ "rules", "commerce_line_item", "commerce_product_reference" ],
-      "ON" : [ "commerce_product_calculate_sell_price" ],
+      "ON" : { "commerce_product_calculate_sell_price" : [] },
       "IF" : [
         { "user_has_role" : {
             "account" : [ "site:current-user" ],
@@ -551,6 +650,7 @@ function catman_commerce_default_rules_configuration() {
   $items['rules_purchase_order_access'] = entity_import('rules_config', '{ "rules_purchase_order_access" : {
       "LABEL" : "Purchase order access",
       "PLUGIN" : "rule",
+      "OWNER" : "rules",
       "TAGS" : [ "commerce_purchase_order" ],
       "REQUIRES" : [ "rules", "commerce_payment" ],
       "USES VARIABLES" : { "user" : { "label" : "User", "type" : "user" } },
@@ -580,9 +680,10 @@ function catman_commerce_default_rules_configuration() {
   $items['rules_quanity_discount_100'] = entity_import('rules_config', '{ "rules_quanity_discount_100" : {
       "LABEL" : "Quantity discount 25%",
       "PLUGIN" : "reaction rule",
+      "OWNER" : "rules",
       "TAGS" : [ "catman", "Commerce Payment" ],
       "REQUIRES" : [ "rules", "commerce_line_item", "commerce_product_reference" ],
-      "ON" : [ "commerce_product_calculate_sell_price" ],
+      "ON" : { "commerce_product_calculate_sell_price" : [] },
       "IF" : [
         { "data_is" : {
             "data" : [ "commerce-line-item:quantity" ],
@@ -611,9 +712,10 @@ function catman_commerce_default_rules_configuration() {
   $items['rules_reseller_discount_25_off'] = entity_import('rules_config', '{ "rules_reseller_discount_25_off" : {
       "LABEL" : "Reseller discount 25% off",
       "PLUGIN" : "reaction rule",
+      "OWNER" : "rules",
       "TAGS" : [ "catman", "Commerce Checkout" ],
       "REQUIRES" : [ "rules", "commerce_line_item", "commerce_product_reference" ],
-      "ON" : [ "commerce_product_calculate_sell_price" ],
+      "ON" : { "commerce_product_calculate_sell_price" : [] },
       "IF" : [
         { "user_has_role" : {
             "account" : [ "site:current-user" ],
@@ -635,9 +737,10 @@ function catman_commerce_default_rules_configuration() {
   $items['rules_send_ready_for_pickup_email'] = entity_import('rules_config', '{ "rules_send_ready_for_pickup_email" : {
       "LABEL" : "Send ready for pickup email",
       "PLUGIN" : "reaction rule",
+      "OWNER" : "rules",
       "TAGS" : [ "catman" ],
       "REQUIRES" : [ "rules", "entity" ],
-      "ON" : [ "commerce_order_update" ],
+      "ON" : { "commerce_order_update" : [] },
       "IF" : [
         { "AND" : [
             { "data_is" : { "data" : [ "commerce-order:status" ], "value" : "ready_for_pickup" } },
@@ -663,9 +766,10 @@ function catman_commerce_default_rules_configuration() {
   $items['rules_send_shipped_paid_email'] = entity_import('rules_config', '{ "rules_send_shipped_paid_email" : {
       "LABEL" : "Send shipped and paid email",
       "PLUGIN" : "reaction rule",
+      "OWNER" : "rules",
       "TAGS" : [ "catman" ],
       "REQUIRES" : [ "rules", "entity" ],
-      "ON" : [ "commerce_order_update" ],
+      "ON" : { "commerce_order_update" : [] },
       "IF" : [
         { "AND" : [
             { "data_is" : { "data" : [ "commerce-order:status" ], "value" : "shipped_paid" } },
@@ -691,9 +795,10 @@ function catman_commerce_default_rules_configuration() {
   $items['rules_send_shipped_unpaid_email'] = entity_import('rules_config', '{ "rules_send_shipped_unpaid_email" : {
       "LABEL" : "Send shipped and unpaid email",
       "PLUGIN" : "reaction rule",
+      "OWNER" : "rules",
       "TAGS" : [ "catman" ],
       "REQUIRES" : [ "rules", "entity" ],
-      "ON" : [ "commerce_order_update" ],
+      "ON" : { "commerce_order_update" : [] },
       "IF" : [
         { "AND" : [
             { "data_is" : { "data" : [ "commerce-order:status" ], "value" : "shipped_unpaid" } },

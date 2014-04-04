@@ -102,11 +102,17 @@ function catman_commerce_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'hidden',
-        'module' => 'commerce_price',
+        'module' => 'commerce_extra_price_formatters',
         'settings' => array(
-          'calculation' => FALSE,
+          'calculation' => TRUE,
+          'check_for_same_price' => 1,
+          'include_tax_in_rrp' => 0,
+          'offer_label' => 'Discounted price',
+          'rrp_label' => 'Full price',
+          'saving_label' => 'You Save',
+          'show_saving' => 0,
         ),
-        'type' => 'commerce_price_formatted_amount',
+        'type' => 'commerce_price_rrp_your_price',
         'weight' => 1,
       ),
       'diff_standard' => array(
@@ -172,11 +178,17 @@ function catman_commerce_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'hidden',
-        'module' => 'commerce_price',
+        'module' => 'commerce_extra_price_formatters',
         'settings' => array(
           'calculation' => FALSE,
+          'check_for_same_price' => TRUE,
+          'include_tax_in_rrp' => TRUE,
+          'offer_label' => 'Offer Price',
+          'rrp_label' => 'RRP',
+          'saving_label' => 'You Save',
+          'show_saving' => FALSE,
         ),
-        'type' => 'commerce_price_formatted_amount',
+        'type' => 'commerce_price_rrp_your_price',
         'weight' => 0,
       ),
       'diff_standard' => array(
@@ -265,7 +277,7 @@ function catman_commerce_field_default_field_instances() {
     'widget' => array(
       'module' => 'options',
       'settings' => array(
-        'apply_chosen' => 0,
+        'apply_chosen' => '',
       ),
       'type' => 'options_select',
       'weight' => 0,
@@ -670,10 +682,19 @@ function catman_commerce_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'add_to_cart_confirmation_view' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
+        'label' => 'hidden',
+        'module' => 'commerce_extra_price_formatters',
+        'settings' => array(
+          'calculation' => TRUE,
+          'check_for_same_price' => 1,
+          'include_tax_in_rrp' => 0,
+          'offer_label' => 'Discounted price',
+          'rrp_label' => 'Full price',
+          'saving_label' => 'You Save',
+          'show_saving' => 0,
+        ),
+        'type' => 'commerce_price_rrp_your_price',
+        'weight' => 1,
       ),
       'commerce_line_item_diff_standard' => array(
         'label' => 'hidden',
@@ -709,7 +730,7 @@ function catman_commerce_field_default_field_instances() {
           'calculation' => 'calculated_sell_price',
         ),
         'type' => 'commerce_price_formatted_amount',
-        'weight' => 0,
+        'weight' => 2,
       ),
       'diff_standard' => array(
         'label' => 'hidden',
@@ -731,12 +752,18 @@ function catman_commerce_field_default_field_instances() {
       ),
       'line_item' => array(
         'label' => 'hidden',
-        'module' => 'commerce_price',
+        'module' => 'commerce_extra_price_formatters',
         'settings' => array(
-          'calculation' => 'calculated_sell_price',
+          'calculation' => TRUE,
+          'check_for_same_price' => 1,
+          'include_tax_in_rrp' => 0,
+          'offer_label' => 'Discounted price',
+          'rrp_label' => 'Full price',
+          'saving_label' => 'You Save',
+          'show_saving' => 0,
         ),
-        'type' => 'commerce_price_formatted_amount',
-        'weight' => 0,
+        'type' => 'commerce_price_rrp_your_price',
+        'weight' => 2,
       ),
       'node_teaser' => array(
         'label' => 'hidden',
@@ -790,7 +817,7 @@ function catman_commerce_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 5,
       ),
       'default' => array(
         'label' => 'inline',
@@ -802,13 +829,13 @@ function catman_commerce_field_default_field_instances() {
           'thousand_separator' => ',',
         ),
         'type' => 'number_integer',
-        'weight' => 4,
+        'weight' => 3,
       ),
       'line_item' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 5,
       ),
       'node_teaser' => array(
         'label' => 'above',
@@ -849,7 +876,7 @@ function catman_commerce_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 3,
       ),
       'default' => array(
         'label' => 'above',
@@ -864,7 +891,7 @@ function catman_commerce_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 4,
       ),
       'node_teaser' => array(
         'label' => 'above',

@@ -43,3 +43,25 @@ function catman_commerce_commerce_order_status_info() {
 
   return $order_statuses;
 }
+
+
+/**
+ * Creates an option for custom callback on commercie_invoice settings page
+ *
+ */
+function catman_commerce_commerce_invoice_number_callbacks() {
+  return array('catman_commerce_invoice_gen' => t('Catman invoice number'));
+}
+
+/**
+ * Callback for generating a custom invoice number
+ * Sets the invoice number by concatenating the date('Y-m') with the order_id
+ *
+ */
+function catman_commerce_invoice_gen($invoice = NULL) {
+  $order_id = $invoice->order_id;
+  $invoice_prefix = date('Y-m') . '-';
+  return $invoice_prefix . $order_id;
+}
+
+
