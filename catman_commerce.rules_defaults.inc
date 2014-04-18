@@ -25,7 +25,7 @@ function catman_commerce_default_rules_configuration() {
         },
         { "text_matches" : {
             "text" : [ "commerce-line-item:line-item-label" ],
-            "match" : "10% of order total"
+            "match" : "S\\u0026H 10% of order total"
           }
         }
       ],
@@ -430,7 +430,7 @@ function catman_commerce_default_rules_configuration() {
             ],
             "DO" : [
               { "commerce_shipping_service_rate_order" : {
-                  "shipping_service_name" : "shipping_10_over_100",
+                  "shipping_service_name" : "10_of_total_over_100",
                   "commerce_order" : [ "commerce_order" ]
                 }
               }
