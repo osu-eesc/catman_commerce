@@ -49,42 +49,6 @@ function catman_commerce_default_rules_configuration() {
       ]
     }
   }');
-  $items['rules_delete_shipping_line_item_then_apply_shipping_actual'] = entity_import('rules_config', '{ "rules_delete_shipping_line_item_then_apply_shipping_actual" : {
-      "LABEL" : "Delete shipping line item then apply shipping (actual)",
-      "PLUGIN" : "rule set",
-      "OWNER" : "rules",
-      "TAGS" : [ "catman" ],
-      "REQUIRES" : [ "commerce_shipping", "rules" ],
-      "USES VARIABLES" : { "commerce_order" : { "label" : "Commerce Order", "type" : "commerce_order" } },
-      "RULES" : [
-        { "RULE" : {
-            "DO" : [
-              { "commerce_shipping_delete_shipping_line_items" : { "commerce_order" : [ "commerce_order" ] } }
-            ],
-            "LABEL" : "Delete shipping line item"
-          }
-        },
-        { "RULE" : {
-            "IF" : [
-              { "user_has_role" : {
-                  "account" : [ "site:current-user" ],
-                  "roles" : { "value" : { "9" : "9" } }
-                }
-              }
-            ],
-            "DO" : [
-              { "commerce_shipping_service_rate_order" : {
-                  "shipping_service_name" : "actual_shipping",
-                  "commerce_order" : [ "commerce_order" ]
-                }
-              }
-            ],
-            "LABEL" : "Add rate for shipping (actual)"
-          }
-        }
-      ]
-    }
-  }');
   $items['rules_delete_shipping_line_item_then_apply_shipping_eght_to_hun'] = entity_import('rules_config', '{ "rules_delete_shipping_line_item_then_apply_shipping_eght_to_hun" : {
       "LABEL" : "Delete shipping line item then apply shipping ($80.01 to $100)",
       "PLUGIN" : "rule set",
@@ -105,7 +69,7 @@ function catman_commerce_default_rules_configuration() {
               { "AND" : [
                   { "NOT user_has_role" : {
                       "account" : [ "site:current-user" ],
-                      "roles" : { "value" : { "6" : "6", "9" : "9" } },
+                      "roles" : { "value" : { "6" : "6" } },
                       "operation" : "OR"
                     }
                   },
@@ -157,7 +121,7 @@ function catman_commerce_default_rules_configuration() {
               { "AND" : [
                   { "NOT user_has_role" : {
                       "account" : [ "site:current-user" ],
-                      "roles" : { "value" : { "6" : "6", "9" : "9" } },
+                      "roles" : { "value" : { "6" : "6" } },
                       "operation" : "OR"
                     }
                   },
@@ -203,7 +167,7 @@ function catman_commerce_default_rules_configuration() {
               { "AND" : [
                   { "NOT user_has_role" : {
                       "account" : [ "site:current-user" ],
-                      "roles" : { "value" : { "6" : "6", "9" : "9" } },
+                      "roles" : { "value" : { "6" : "6" } },
                       "operation" : "OR"
                     }
                   },
@@ -363,7 +327,7 @@ function catman_commerce_default_rules_configuration() {
               { "AND" : [
                   { "NOT user_has_role" : {
                       "account" : [ "site:current-user" ],
-                      "roles" : { "value" : { "6" : "6", "9" : "9" } },
+                      "roles" : { "value" : { "6" : "6" } },
                       "operation" : "OR"
                     }
                   },
@@ -415,7 +379,7 @@ function catman_commerce_default_rules_configuration() {
               { "AND" : [
                   { "NOT user_has_role" : {
                       "account" : [ "site:current-user" ],
-                      "roles" : { "value" : { "6" : "6", "9" : "9" } },
+                      "roles" : { "value" : { "6" : "6" } },
                       "operation" : "OR"
                     }
                   },
@@ -461,7 +425,7 @@ function catman_commerce_default_rules_configuration() {
               { "AND" : [
                   { "NOT user_has_role" : {
                       "account" : [ "site:current-user" ],
-                      "roles" : { "value" : { "6" : "6", "9" : "9" } },
+                      "roles" : { "value" : { "6" : "6" } },
                       "operation" : "OR"
                     }
                   },
@@ -513,7 +477,7 @@ function catman_commerce_default_rules_configuration() {
               { "AND" : [
                   { "NOT user_has_role" : {
                       "account" : [ "site:current-user" ],
-                      "roles" : { "value" : { "6" : "6", "9" : "9" } },
+                      "roles" : { "value" : { "6" : "6" } },
                       "operation" : "OR"
                     }
                   },
@@ -565,7 +529,7 @@ function catman_commerce_default_rules_configuration() {
               { "AND" : [
                   { "NOT user_has_role" : {
                       "account" : [ "site:current-user" ],
-                      "roles" : { "value" : { "6" : "6", "9" : "9" } },
+                      "roles" : { "value" : { "6" : "6" } },
                       "operation" : "OR"
                     }
                   },

@@ -115,7 +115,6 @@ features[field_instance][] = message_type-commerce_order_message-message_order_d
 features[field_instance][] = message_type-commerce_order_message-message_text
 features[field_instance][] = message_type-message_type-message_text
 features[rules_config][] = rules_10_percent_over_100
-features[rules_config][] = rules_delete_shipping_line_item_then_apply_shipping_actual
 features[rules_config][] = rules_delete_shipping_line_item_then_apply_shipping_eght_to_hun
 features[rules_config][] = rules_delete_shipping_line_item_then_apply_shipping_five_or_less
 features[rules_config][] = rules_delete_shipping_line_item_then_apply_shipping_five_to_ten
