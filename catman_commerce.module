@@ -6,11 +6,28 @@
 
 include_once 'catman_commerce.features.inc';
 
+/**
+ * Implements hook_commerce_order_state_info_alter().
+ *
+ * Add returns state.
+ */
+function catman_commerce_commerce_order_state_info_alter(&$order_states)  {
+  $order_states['returns'] = array(
+    'name' => 'returns',
+    'title' => t('Returns'),
+    'description' => t('Orders in this state have been are in the process of being returned or refunded'),
+    'weight' => 9,
+    'default_status' => 'return_received',
+    );
+
+  return $order_states;
+}
+
 
 /**
  * Implements hook_commerce_order_status_info().
  *
- * Here we add two statuses to the pending' order state.
+ * Add statuses to the pending and return to order states.
  */
 function catman_commerce_commerce_order_status_info() {
 
@@ -34,6 +51,22 @@ function catman_commerce_commerce_order_status_info() {
     'state' => 'pending',
     'weight' => '12',
   );
+
+  $order_statuses['return_received'] = array(
+    'name' => 'return_received',
+    'title' => t('Return received'),
+    'state' => 'returns',
+    'weight' => '15',
+  );
+
+  $order_statuses['refunded'] = array(
+    'name' => 'refunded',
+    'title' => t('Refunded'),
+    'state' => 'returns',
+    'weight' => '16',
+  );
+
+
 
   // remove processing status (we may want to add this back at some point)
   // $order_statuses['processing'] = array(
