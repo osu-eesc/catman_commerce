@@ -66,16 +66,9 @@ function catman_commerce_commerce_order_status_info() {
     'weight' => '16',
   );
 
-
-
-  // remove processing status (we may want to add this back at some point)
-  // $order_statuses['processing'] = array(
-  //   'state' => 'pending',
-  //   'status' => FALSE,
-  // );
-
   return $order_statuses;
 }
+
 
 /*
   * Creates an option for custom callback on commercie_invoice settings page
@@ -97,7 +90,16 @@ function catman_commerce_invoice_gen($invoice = NULL) {
 }
 
 
+/**
+ * Implements hook_form_alter().
+ */
+function catman_commerce_form_alter(&$form, &$form_state, $form_id) {
+  // Don't County drop-down list on checkout form
+  if ($form_id == 'commerce_checkout_form_checkout') {
+    $form['customer_profile_billing']['commerce_customer_address']['und'][0]['country']['#access'] = FALSE;
+    $form['customer_profile_shipping']['commerce_customer_address']['und'][0]['country']['#access'] = FALSE;
+  }
 
-
+}
 
 
