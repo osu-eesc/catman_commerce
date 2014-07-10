@@ -803,7 +803,7 @@ function catman_commerce_field_default_field_instances() {
         'currency_code' => 'default',
       ),
       'type' => 'commerce_price_full',
-      'weight' => 0,
+      'weight' => 3,
     ),
   );
 
@@ -816,8 +816,8 @@ function catman_commerce_field_default_field_instances() {
       ),
     ),
     'deleted' => 0,
-    'description' => 'Enter the inventory for this item.
-<em>Note: If you are adjusting the inventory (because of a purchase, reprint, reduction, etc.), note the reason for the adjustment in the "Revision information" section before clicking "Save."</em>',
+    'description' => 'Enter the inventory for this item (existing plus new).<br>
+For print-on-demand items, enter 150,000.<br>',
     'display' => array(
       'add_to_cart_confirmation_view' => array(
         'label' => 'above',
@@ -867,7 +867,7 @@ function catman_commerce_field_default_field_instances() {
       'module' => 'number',
       'settings' => array(),
       'type' => 'number',
-      'weight' => 5,
+      'weight' => 2,
     ),
   );
 
@@ -876,7 +876,10 @@ function catman_commerce_field_default_field_instances() {
     'bundle' => 'product',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'Enter the cost per copy.<br>
+For both sales price and cost per copy:
+<ul><li>If this is an EESC project, the project manager should provide this information.</li>
+<li>If this is a PNW purchase, the "request for POs" from the lead state should provide this information. If unsure, check with Oregon\'s PNW rep.</li></ul>',
     'display' => array(
       'add_to_cart_confirmation_view' => array(
         'label' => 'above',
@@ -921,7 +924,7 @@ function catman_commerce_field_default_field_instances() {
         'currency_code' => 'default',
       ),
       'type' => 'commerce_price_full',
-      'weight' => 6,
+      'weight' => 4,
     ),
   );
 
@@ -1697,8 +1700,12 @@ function catman_commerce_field_default_field_instances() {
   t('Cost per copy');
   t('Display name');
   t('Display path');
-  t('Enter the inventory for this item.
-<em>Note: If you are adjusting the inventory (because of a purchase, reprint, reduction, etc.), note the reason for the adjustment in the "Revision information" section before clicking "Save."</em>');
+  t('Enter the cost per copy.<br>
+For both sales price and cost per copy:
+<ul><li>If this is an EESC project, the project manager should provide this information.</li>
+<li>If this is a PNW purchase, the "request for POs" from the lead state should provide this information. If unsure, check with Oregon\'s PNW rep.</li></ul>');
+  t('Enter the inventory for this item (existing plus new).<br>
+For print-on-demand items, enter 150,000.<br>');
   t('Line item');
   t('Line items');
   t('Message');
