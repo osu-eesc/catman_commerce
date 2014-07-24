@@ -876,10 +876,12 @@ For print-on-demand items, enter 150,000.<br>',
     'bundle' => 'product',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'Enter the cost per copy.<br>
-For both sales price and cost per copy:
-<ul><li>If this is an EESC project, the project manager should provide this information.</li>
-<li>If this is a PNW purchase, the "request for POs" from the lead state should provide this information. If unsure, check with Oregon\'s PNW rep.</li></ul>',
+    'description' => 'For both sales price and cost per copy:
+<ul><li>Enter values with decimal places but without dollar sign (e.g., 1.50 for $1.50)</li>
+
+<li>If this is an EESC project, the project manager should provide this information.</li>
+<li>If this is a PNW purchase, the "request for POs" from the lead state should provide this information. If unsure, check with Oregon\'s PNW rep.</li></ul>
+',
     'display' => array(
       'add_to_cart_confirmation_view' => array(
         'label' => 'above',
@@ -1700,12 +1702,14 @@ For both sales price and cost per copy:
   t('Cost per copy');
   t('Display name');
   t('Display path');
-  t('Enter the cost per copy.<br>
-For both sales price and cost per copy:
-<ul><li>If this is an EESC project, the project manager should provide this information.</li>
-<li>If this is a PNW purchase, the "request for POs" from the lead state should provide this information. If unsure, check with Oregon\'s PNW rep.</li></ul>');
   t('Enter the inventory for this item (existing plus new).<br>
 For print-on-demand items, enter 150,000.<br>');
+  t('For both sales price and cost per copy:
+<ul><li>Enter values with decimal places but without dollar sign (e.g., 1.50 for $1.50)</li>
+
+<li>If this is an EESC project, the project manager should provide this information.</li>
+<li>If this is a PNW purchase, the "request for POs" from the lead state should provide this information. If unsure, check with Oregon\'s PNW rep.</li></ul>
+');
   t('Line item');
   t('Line items');
   t('Message');
