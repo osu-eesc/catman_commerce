@@ -134,3 +134,4 @@ features[rules_config][] = rules_reseller_discount_25_off
 features[rules_config][] = rules_send_ready_for_pickup_email
 features[rules_config][] = rules_send_shipped_paid_email
 features[rules_config][] = rules_send_shipped_unpaid_email
+features[views_view][] = catman_orders
