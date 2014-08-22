@@ -817,7 +817,8 @@ function catman_commerce_field_default_field_instances() {
     ),
     'deleted' => 0,
     'description' => 'Enter the inventory for this item (existing plus new).<br>
-For print-on-demand items, enter 150,000.<br>',
+For print-on-demand items, enter 150000 .<br>
+Use numbers only, no commas.',
     'display' => array(
       'add_to_cart_confirmation_view' => array(
         'label' => 'above',
@@ -1703,7 +1704,8 @@ For print-on-demand items, enter 150,000.<br>',
   t('Display name');
   t('Display path');
   t('Enter the inventory for this item (existing plus new).<br>
-For print-on-demand items, enter 150,000.<br>');
+For print-on-demand items, enter 150000 .<br>
+Use numbers only, no commas.');
   t('For both sales price and cost per copy:
 <ul><li>Enter values with decimal places but without dollar sign (e.g., 1.50 for $1.50)</li>
 
