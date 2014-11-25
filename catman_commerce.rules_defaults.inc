@@ -674,6 +674,17 @@ function catman_commerce_default_rules_configuration() {
       ]
     }
   }');
+  $items['rules_remove_invalid_products'] = entity_import('rules_config', '{ "rules_remove_invalid_products" : {
+      "LABEL" : "remove invalid products",
+      "PLUGIN" : "reaction rule",
+      "OWNER" : "rules",
+      "TAGS" : [ "catman" ],
+      "REQUIRES" : [ "rules", "entity" ],
+      "ON" : { "commerce_product_insert" : [] },
+      "IF" : [ { "data_is_empty" : { "data" : [ "commerce-product:sku" ] } } ],
+      "DO" : [ { "entity_delete" : { "data" : [ "commerce-product" ] } } ]
+    }
+  }');
   $items['rules_reseller_discount_25_off'] = entity_import('rules_config', '{ "rules_reseller_discount_25_off" : {
       "LABEL" : "Reseller discount 25% off",
       "PLUGIN" : "reaction rule",
