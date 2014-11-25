@@ -134,4 +134,4 @@ features[rules_config][] = rules_send_ready_for_pickup_email
 features[rules_config][] = rules_send_shipped_paid_email
 features[rules_config][] = rules_send_shipped_unpaid_email
 features[views_view][] = catman_orders
-mtime = 1416940243
+mtime = 1416944803
