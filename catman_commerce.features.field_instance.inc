@@ -803,71 +803,6 @@ function catman_commerce_field_default_field_instances() {
         'currency_code' => 'default',
       ),
       'type' => 'commerce_price_full',
-      'weight' => 3,
-    ),
-  );
-
-  // Exported field_instance: 'commerce_product-product-commerce_stock'
-  $field_instances['commerce_product-product-commerce_stock'] = array(
-    'bundle' => 'product',
-    'default_value' => array(
-      0 => array(
-        'value' => 0,
-      ),
-    ),
-    'deleted' => 0,
-    'description' => 'Enter the inventory for this item (existing plus new).<br>
-For print-on-demand items, enter 150000 .<br>
-Use numbers only, no commas.',
-    'display' => array(
-      'add_to_cart_confirmation_view' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 5,
-      ),
-      'default' => array(
-        'label' => 'inline',
-        'module' => 'number',
-        'settings' => array(
-          'decimal_separator' => '.',
-          'prefix_suffix' => 1,
-          'scale' => 0,
-          'thousand_separator' => ',',
-        ),
-        'type' => 'number_integer',
-        'weight' => 3,
-      ),
-      'line_item' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 5,
-      ),
-      'node_teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'commerce_product',
-    'fences_wrapper' => 'div',
-    'field_name' => 'commerce_stock',
-    'label' => 'Quanity available',
-    'required' => 1,
-    'settings' => array(
-      'max' => '',
-      'min' => '',
-      'prefix' => '',
-      'suffix' => '',
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 0,
-      'module' => 'number',
-      'settings' => array(),
-      'type' => 'number',
       'weight' => 2,
     ),
   );
@@ -927,7 +862,7 @@ Use numbers only, no commas.',
         'currency_code' => 'default',
       ),
       'type' => 'commerce_price_full',
-      'weight' => 4,
+      'weight' => 3,
     ),
   );
 
@@ -1703,9 +1638,6 @@ Use numbers only, no commas.',
   t('Cost per copy');
   t('Display name');
   t('Display path');
-  t('Enter the inventory for this item (existing plus new).<br>
-For print-on-demand items, enter 150000 .<br>
-Use numbers only, no commas.');
   t('For both sales price and cost per copy:
 <ul><li>Enter values with decimal places but without dollar sign (e.g., 1.50 for $1.50)</li>
 
@@ -1720,7 +1652,6 @@ Use numbers only, no commas.');
   t('Order total');
   t('Price');
   t('Product');
-  t('Quanity available');
   t('Ship to');
   t('Shipping service');
   t('The name of this message type as displayed in logs.');

@@ -564,6 +564,7 @@ function catman_commerce_default_rules_configuration() {
   $items['rules_increment_stock_canceling_order'] = entity_import('rules_config', '{ "rules_increment_stock_canceling_order" : {
       "LABEL" : "Stock: Increase when canceling the order process",
       "PLUGIN" : "reaction rule",
+      "ACTIVE" : false,
       "OWNER" : "rules",
       "REQUIRES" : [ "rules", "commerce_ss", "entity" ],
       "ON" : { "commerce_order_update" : [] },
