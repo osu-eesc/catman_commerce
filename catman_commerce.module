@@ -59,11 +59,18 @@ function catman_commerce_commerce_order_status_info() {
     'weight' => '15',
   );
 
+  $order_statuses['refund_processing'] = array(
+    'name' => 'refund_processing',
+    'title' => t('Refund processing'),
+    'state' => 'returns',
+    'weight' => '16',
+  );
+
   $order_statuses['refunded'] = array(
     'name' => 'refunded',
     'title' => t('Refunded'),
     'state' => 'returns',
-    'weight' => '16',
+    'weight' => '17',
   );
 
   return $order_statuses;
@@ -71,7 +78,7 @@ function catman_commerce_commerce_order_status_info() {
 
 
 /*
-  * Creates an option for custom callback on commercie_invoice settings page
+  * Creates an option for custom callback on commerce_invoice settings page
   *
   */
 function catman_commerce_catman_invoice_number_callbacks() {
