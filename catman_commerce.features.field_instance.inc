@@ -803,7 +803,7 @@ function catman_commerce_field_default_field_instances() {
         'currency_code' => 'default',
       ),
       'type' => 'commerce_price_full',
-      'weight' => 2,
+      'weight' => 3,
     ),
   );
 
@@ -832,7 +832,7 @@ function catman_commerce_field_default_field_instances() {
           'calculation' => FALSE,
         ),
         'type' => 'commerce_price_formatted_amount',
-        'weight' => 5,
+        'weight' => 3,
       ),
       'line_item' => array(
         'label' => 'above',
@@ -862,7 +862,7 @@ function catman_commerce_field_default_field_instances() {
         'currency_code' => 'default',
       ),
       'type' => 'commerce_price_full',
-      'weight' => 3,
+      'weight' => 4,
     ),
   );
 
