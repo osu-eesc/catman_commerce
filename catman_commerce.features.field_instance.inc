@@ -472,7 +472,7 @@ function catman_commerce_field_default_field_instances() {
       'module' => 'commerce_customer',
       'settings' => array(),
       'type' => 'commerce_customer_profile_manager',
-      'weight' => -5,
+      'weight' => 3,
     ),
   );
 
@@ -524,7 +524,7 @@ function catman_commerce_field_default_field_instances() {
       'module' => 'commerce_customer',
       'settings' => array(),
       'type' => 'commerce_customer_profile_manager',
-      'weight' => -5,
+      'weight' => 2,
     ),
   );
 
@@ -582,7 +582,7 @@ function catman_commerce_field_default_field_instances() {
       'module' => 'commerce_line_item',
       'settings' => array(),
       'type' => 'commerce_line_item_manager',
-      'weight' => -10,
+      'weight' => 0,
     ),
   );
 
@@ -670,7 +670,7 @@ function catman_commerce_field_default_field_instances() {
         'currency_code' => 'default',
       ),
       'type' => 'commerce_price_full',
-      'weight' => -8,
+      'weight' => 1,
     ),
   );
 
