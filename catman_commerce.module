@@ -125,3 +125,23 @@ function catman_commerce_form_alter(&$form, &$form_state, $form_id) {
 }
 
 
+/**
+ * Implements hook_commerce_price_formatted_components_alter().
+ */
+function catman_commerce_commerce_price_formatted_components_alter(&$components, $price, $entity) {
+  // We modify $variables to "merge" base_price and discount
+  if ( isset($components['base_price']) && !empty($components['base_price']) &&
+    isset($components['discount']) && !empty($components['discount'])) {
+    // We calculate the new price with included discount
+    $price_with_discount_amount = $components['base_price']['price']['amount'] + $components['discount']['price']['amount'];
+    // We format this price with the used currency
+    $price_with_discount_formatted = commerce_currency_format($price_with_discount_amount, $components['base_price']['price']['currency_code']);
+    // We update the display of base_price component with the new price
+    $components['base_price']['price']['amount'] = $price_with_discount_amount;
+    $components['base_price']['formatted_price'] = $price_with_discount_formatted;
+    // We unset the display of discount
+    unset($components['discount']);
+  }
+}
+
+
